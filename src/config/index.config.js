@@ -1,3 +1,3 @@
 import envs from './envs/envs.js'
-
-export { envs }
+import { DATABASE } from './db/db.config.js'
+export { envs, DATABASE }
