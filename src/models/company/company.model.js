@@ -75,7 +75,7 @@ const CompanyModel = (sq) => {
         defaultValue: DataTypes.NOW,
       },
 
-      AdministradorId: {
+      AdminId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {

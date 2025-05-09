@@ -16,7 +16,7 @@ import UserModel from './user/user.model.js'
 import ViewModel from './view/view.model.js'
 import VoucherModel from './voucher/voucher,model.js'
 
-export default models = [
+export const models = [
   AnswerModel,
   AppointmentModel,
   CarModel,
