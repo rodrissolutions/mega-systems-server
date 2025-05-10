@@ -1,0 +1,28 @@
+import { User } from '../../lib/database.js'
+
+const existUserByKey = async (key, value) => {
+  const user = await User.findOne({ where: { [key]: value } })
+  return user
+}
+
+const createUser = async (data) => {
+  const { phone, email, dni } = data
+
+  const userByPhone = await existUserByKey('phone', phone)
+  if (userByPhone)
+    return { code: 400, message: 'El número de teléfono ya está registrado' }
+
+  const userByEmail = await existUserByKey('email', email)
+  if (userByEmail)
+    return { code: 400, message: 'El correo electrónico ya está registrado' }
+
+  const userByDni = await existUserByKey('dni', dni)
+  if (userByDni) return { code: 400, message: 'El DNI ya está registrado' }
+
+  const user = await User.create(data)
+  return user
+    ? { code: 200, user: user.dataValues }
+    : { code: 400, message: 'Error al crear el usuario' }
+}
+
+export { createUser }

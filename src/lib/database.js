@@ -85,4 +85,23 @@ ServiceDetail.belongsTo(Service, { foreignKey: 'ServiceId' })
 ServiceDetail.hasMany(User, { foreignKey: 'UserId' })
 User.belongsTo(ServiceDetail, { foreignKey: 'UserId' })
 
-export { sequelize }
+export {
+  sequelize,
+  Answer,
+  Appointment,
+  Car,
+  Category,
+  Company,
+  Item,
+  Product,
+  Residency,
+  Review,
+  Sale,
+  SaleDetail,
+  Schedule,
+  Service,
+  ServiceDetail,
+  User,
+  View,
+  Voucher,
+}
