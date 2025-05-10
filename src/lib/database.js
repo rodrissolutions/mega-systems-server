@@ -82,8 +82,8 @@ SaleDetail.belongsTo(Product, { foreignKey: 'ProductId' })
 Service.hasMany(ServiceDetail, { foreignKey: 'ServiceId' })
 ServiceDetail.belongsTo(Service, { foreignKey: 'ServiceId' })
 
-ServiceDetail.hasMany(User, { foreignKey: 'UserId' })
-User.belongsTo(ServiceDetail, { foreignKey: 'UserId' })
+User.hasMany(ServiceDetail, { foreignKey: 'UserId' })
+ServiceDetail.belongsTo(User, { foreignKey: 'UserId' })
 
 export {
   sequelize,

@@ -5,7 +5,7 @@ import { sequelize } from './src/lib/database.js'
 sequelize
   .sync({
     logging: false,
-    force: true,
+    force: false,
     alter: true,
   })
   .then((res) => {

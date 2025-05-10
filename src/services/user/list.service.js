@@ -1,9 +1,16 @@
 import { User, Residency } from '../../lib/database.js'
 
 const getUserById = async (id) => {
-  const user = await User.findOne(id, {
+  const user = await User.findOne({
+    where: {
+      id: id,
+    },
     include: {
       model: Residency,
+    },
+
+    attributes: {
+      exclude: ['password'],
     },
   })
   return user
@@ -15,6 +22,9 @@ const getAll = async () => {
   const users = await User.findAll({
     include: {
       model: Residency,
+    },
+    attributes: {
+      exclude: ['password'],
     },
   })
   return { code: 200, users }
