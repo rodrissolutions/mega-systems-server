@@ -13,10 +13,11 @@ const login = async (email, password) => {
     password,
     user.password
   )
+  const { password: _, ...userWithoutPassword } = user.dataValues
   if (!isValidPassword)
     return { code: 401, message: 'Credenciales incorrectas' }
 
-  return { code: 200, user: user.dataValues }
+  return { code: 200, user: userWithoutPassword }
 }
 
 export default { login }
