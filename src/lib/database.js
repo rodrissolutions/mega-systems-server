@@ -23,10 +23,14 @@ const {
   User,
   View,
   Voucher,
+  Code,
 } = sequelize.models
 
 User.hasMany(Company, { foreignKey: 'AdminId' })
 Company.belongsTo(User, { foreignKey: 'AdminId' })
+
+User.hasMany(Code, { foreignKey: 'UserId' })
+Code.belongsTo(User, { foreignKey: 'UserId' })
 
 Company.hasMany(Schedule, { foreignKey: 'CompanyId' })
 Schedule.belongsTo(Company, { foreignKey: 'CompanyId' })
@@ -91,6 +95,7 @@ export {
   Appointment,
   Car,
   Category,
+  Code,
   Company,
   Item,
   Product,

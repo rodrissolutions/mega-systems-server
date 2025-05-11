@@ -1,3 +1,4 @@
+import { ndmHelpers } from '../../helpers/index.helpers.js'
 import { authServices } from '../../services/index.services.js'
 import { jwtUtils } from '../../utils/index.utils.js'
 
@@ -5,6 +6,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body
     const { code, message, user } = await authServices.login(email, password)
+    ndmHelpers.loginNotification(email)
     if (user) {
       const token = jwtUtils.generateToken(user)
       return res.status(code).json({ token, message, user })

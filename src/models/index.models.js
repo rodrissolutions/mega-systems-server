@@ -15,12 +15,14 @@ import ServiceModel from './service/service.model.js'
 import UserModel from './user/user.model.js'
 import ViewModel from './view/view.model.js'
 import VoucherModel from './voucher/voucher,model.js'
+import CodeModel from './code/code.model.js'
 
 export const models = [
   AnswerModel,
   AppointmentModel,
   CarModel,
   CategoryModel,
+  CodeModel,
   CompanyModel,
   ItemModel,
   ProductModel,
