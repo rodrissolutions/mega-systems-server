@@ -21,7 +21,11 @@ const createUser = async (data) => {
 
   const user = await User.create(data)
   return user
-    ? { code: 200, user: user.dataValues }
+    ? {
+        code: 200,
+        user: user.dataValues,
+        message: 'Registro exitoso. Verifique su cuente por correo',
+      }
     : { code: 400, message: 'Error al crear el usuario' }
 }
 

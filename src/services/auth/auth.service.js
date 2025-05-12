@@ -2,7 +2,7 @@ import { User } from '../../lib/database.js'
 import { bcryptUtils } from '../../utils/index.utils.js'
 
 const login = async (email, password) => {
-  console.log(email.length)
+  console.log(email)
   const user = await User.findOne({
     where: {
       email,

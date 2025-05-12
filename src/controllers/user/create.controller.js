@@ -1,3 +1,4 @@
+import { cloudinaryHelpers } from '../../helpers/index.helpers.js'
 import nodemailerHelper from '../../helpers/nodemailer/nodemailer.helper.js'
 import { codeServices, userServices } from '../../services/index.services.js'
 import { bcryptUtils, codeUtils } from '../../utils/index.utils.js'
@@ -5,10 +6,19 @@ import { bcryptUtils, codeUtils } from '../../utils/index.utils.js'
 const createUser = async (req, res) => {
   try {
     const { password, ...data } = req.body
+    const file = req.file
     const hashedPassword = await bcryptUtils.hashPassword(password)
+
+    const secure_url = await cloudinaryHelpers.uploadFile(
+      'users',
+      file.buffer,
+      file.originalname
+    )
+
     const { code, message, user } = await userServices.createUser({
       ...data,
       password: hashedPassword,
+      profilePicture: secure_url,
     })
 
     if (user) {
