@@ -15,7 +15,7 @@ const CodeModel = (sq) => {
         allowNull: false,
         unique: true,
         validate: {
-          len: [6, 6],
+          len: [4, 4],
         },
       },
 

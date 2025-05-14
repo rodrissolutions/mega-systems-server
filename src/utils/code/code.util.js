@@ -3,7 +3,7 @@ import randomstring from 'randomstring'
 const createCode = () => {
   const code = randomstring.generate({
     charset: 'numeric',
-    length: 6,
+    length: 4,
   })
   return code
 }
