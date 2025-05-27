@@ -37,11 +37,20 @@ const AppointmentModel = (sq) => {
         defaultValue: false,
       },
 
-      userId: {
+      UserId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'Users',
+          key: 'id',
+        },
+      },
+
+      ServiceId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: 'Services',
           key: 'id',
         },
       },
