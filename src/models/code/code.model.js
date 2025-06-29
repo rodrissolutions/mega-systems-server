@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const CodeModel = (sq) => {
   sq.define(
-    'Code',
+    "Code",
     {
       id: {
         type: DataTypes.UUID,
@@ -21,7 +21,14 @@ const CodeModel = (sq) => {
 
       type: {
         type: DataTypes.ENUM,
-        values: ['Verificación', 'Recuperación'],
+        allowNull: false,
+        values: [
+          "Verificación",
+          "Recuperación",
+          "Compra",
+          "Entrega",
+          "Cancelación",
+        ],
       },
 
       createdAt: {
@@ -32,7 +39,7 @@ const CodeModel = (sq) => {
 
       expirationTime: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
 
       isValid: {
@@ -44,15 +51,15 @@ const CodeModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default CodeModel
+export default CodeModel;

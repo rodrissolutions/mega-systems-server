@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import "dotenv/config";
 
 const {
   PORT = 3000,
@@ -10,7 +10,8 @@ const {
   CLOUDINARY_API_SECRET,
   CLOUDINARY_KEY,
   CLOUDINARY_NAME,
-} = process.env
+  GLOBAL_PASSWORD,
+} = process.env;
 
 export default {
   PORT,
@@ -22,4 +23,5 @@ export default {
   CLOUDINARY_API_SECRET,
   CLOUDINARY_KEY,
   CLOUDINARY_NAME,
-}
+  GLOBAL_PASSWORD,
+};

@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const SaleModel = (sq) => {
   sq.define(
-    'Sale',
+    "Sale",
     {
       id: {
         type: DataTypes.UUID,
@@ -23,8 +23,21 @@ const SaleModel = (sq) => {
 
       status: {
         type: DataTypes.ENUM,
-        values: ['Pendiente', 'Pagada', 'Cancelada', 'En revisión'],
-        defaultValue: 'Pendiente',
+        values: [
+          "Pendiente",
+          "Pagada",
+          "Cancelada",
+          "En revisión",
+          "Enviado",
+          "Entregado",
+        ],
+        defaultValue: "Pendiente",
+      },
+
+      paymentMethod: {
+        type: DataTypes.ENUM,
+        values: ["Efectivo", "Transferencia"],
+        allowNull: false,
       },
 
       createdAt: {
@@ -37,15 +50,15 @@ const SaleModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default SaleModel
+export default SaleModel;

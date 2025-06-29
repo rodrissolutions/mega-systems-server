@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ItemModel = (sq) => {
   sq.define(
-    'Item',
+    "Item",
     {
       id: {
         type: DataTypes.UUID,
@@ -15,12 +15,12 @@ const ItemModel = (sq) => {
         allowNull: false,
       },
 
-      CarId: {
+      CartId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Cars',
-          key: 'id',
+          model: "Carts",
+          key: "id",
         },
       },
 
@@ -28,15 +28,15 @@ const ItemModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Products',
-          key: 'id',
+          model: "Products",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ItemModel
+export default ItemModel;

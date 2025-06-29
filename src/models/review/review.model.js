@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ReviewModel = (sq) => {
   sq.define(
-    'Review',
+    "Review",
     {
       id: {
         type: DataTypes.UUID,
@@ -30,24 +30,33 @@ const ReviewModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
 
       ProductId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
-          model: 'Products',
-          key: 'id',
+          model: "Products",
+          key: "id",
+        },
+      },
+
+      ServiceId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: "Services",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ReviewModel
+export default ReviewModel;

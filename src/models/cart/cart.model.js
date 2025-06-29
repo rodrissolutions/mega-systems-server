@@ -1,17 +1,13 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
-const CarModel = (sq) => {
+const CartModel = (sq) => {
   sq.define(
-    'Car',
+    "Cart",
     {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
-      },
-      date: {
-        type: DataTypes.DATE,
-        allowNull: false,
       },
 
       status: {
@@ -23,15 +19,20 @@ const CarModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
+      },
+
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default CarModel
+export default CartModel;

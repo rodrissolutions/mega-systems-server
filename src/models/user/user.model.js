@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const UserModel = (sq) => {
   sq.define(
-    'User',
+    "User",
     {
       id: {
         type: DataTypes.UUID,
@@ -54,11 +54,18 @@ const UserModel = (sq) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      RoleId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+          model: "Roles",
+          key: "id",
+        },
+      },
 
-      role: {
-        type: DataTypes.ENUM,
-        values: ['Administrador', 'Cliente'],
-        defaultValue: 'Cliente',
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
       isVerified: {
         type: DataTypes.BOOLEAN,
@@ -68,7 +75,7 @@ const UserModel = (sq) => {
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default UserModel
+export default UserModel;

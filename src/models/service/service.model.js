@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ServiceModel = (sq) => {
   sq.define(
-    'Service',
+    "Service",
     {
       id: {
         type: DataTypes.UUID,
@@ -13,6 +13,14 @@ const ServiceModel = (sq) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isUrl: true,
+        },
+      },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,20 +29,11 @@ const ServiceModel = (sq) => {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
-
-      CategoryId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-          model: 'Categories',
-          key: 'id',
-        },
-      },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ServiceModel
+export default ServiceModel;

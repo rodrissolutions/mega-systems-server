@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ResidencyModel = (sq) => {
   sq.define(
-    'Residency',
+    "Residency",
     {
       id: {
         type: DataTypes.UUID,
@@ -19,7 +19,24 @@ const ResidencyModel = (sq) => {
         allowNull: false,
       },
 
-      address: {
+      mainStreet: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      secondaryStreet: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      reference: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      latitude: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      longitude: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -28,15 +45,15 @@ const ResidencyModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ResidencyModel
+export default ResidencyModel;

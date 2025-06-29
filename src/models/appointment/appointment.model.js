@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const AppointmentModel = (sq) => {
   sq.define(
-    'Appointment',
+    "Appointment",
     {
       id: {
         type: DataTypes.UUID,
@@ -27,7 +27,6 @@ const AppointmentModel = (sq) => {
 
       createdAt: {
         type: DataTypes.DATE,
-        allowNull: false,
         defaultValue: DataTypes.NOW,
       },
 
@@ -41,8 +40,17 @@ const AppointmentModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
+        },
+      },
+
+      TechnicianId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: "Users",
+          key: "id",
         },
       },
 
@@ -50,8 +58,8 @@ const AppointmentModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: true,
         references: {
-          model: 'Services',
-          key: 'id',
+          model: "Services",
+          key: "id",
         },
       },
 
@@ -59,13 +67,13 @@ const AppointmentModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: true,
         references: {
-          model: 'Products',
-          key: 'id',
+          model: "Products",
+          key: "id",
         },
       },
     },
     { timestamps: false }
-  )
-}
+  );
+};
 
-export default AppointmentModel
+export default AppointmentModel;

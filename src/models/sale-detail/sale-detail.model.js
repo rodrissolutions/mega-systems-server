@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const SaleDetailModel = (sq) => {
   sq.define(
-    'SaleDetail',
+    "SaleDetail",
     {
       id: {
         type: DataTypes.UUID,
@@ -20,12 +20,17 @@ const SaleDetailModel = (sq) => {
         allowNull: false,
       },
 
+      unitPrice: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+
       ProductId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Products',
-          key: 'id',
+          model: "Products",
+          key: "id",
         },
       },
 
@@ -33,15 +38,15 @@ const SaleDetailModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Sales',
-          key: 'id',
+          model: "Sales",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default SaleDetailModel
+export default SaleDetailModel;

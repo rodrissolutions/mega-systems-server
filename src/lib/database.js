@@ -1,20 +1,23 @@
-import { Sequelize } from 'sequelize'
-import { DATABASE } from '../config/index.config.js'
-import { models } from '../models/index.models.js'
-const sequelize = new Sequelize(DATABASE.URI, DATABASE.OPTIONS)
+import { Sequelize } from "sequelize";
+import { DATABASE } from "../config/index.config.js";
+import { models } from "../models/index.models.js";
+const sequelize = new Sequelize(DATABASE.URI, DATABASE.OPTIONS);
 
-models.forEach((model) => model(sequelize))
+models.forEach((model) => model(sequelize));
 
 const {
   Answer,
   Appointment,
-  Car,
+  AdditionalValue,
+  Cart,
   Category,
   Company,
+  Favorite,
   Item,
   Product,
   Residency,
   Review,
+  Role,
   Sale,
   SaleDetail,
   Schedule,
@@ -24,83 +27,117 @@ const {
   View,
   Voucher,
   Code,
-} = sequelize.models
+  Offer,
+  Log,
+} = sequelize.models;
 
-User.hasMany(Company, { foreignKey: 'AdminId' })
-Company.belongsTo(User, { foreignKey: 'AdminId' })
+Role.hasMany(User, { foreignKey: "RoleId" });
+User.belongsTo(Role, { foreignKey: "RoleId" });
 
-User.hasMany(Code, { foreignKey: 'UserId' })
-Code.belongsTo(User, { foreignKey: 'UserId' })
+User.hasMany(Log, { foreignKey: "UserId" });
+Log.belongsTo(User, { foreignKey: "UserId" });
 
-Company.hasMany(Schedule, { foreignKey: 'CompanyId' })
-Schedule.belongsTo(Company, { foreignKey: 'CompanyId' })
+User.hasMany(Company, { foreignKey: "AdminId" });
+Company.belongsTo(User, { foreignKey: "AdminId" });
 
-User.hasOne(Residency, { foreignKey: 'UserId' })
-Residency.belongsTo(User, { foreignKey: 'UserId' })
+User.hasMany(Code, { foreignKey: "UserId" });
+Code.belongsTo(User, { foreignKey: "UserId" });
 
-User.hasOne(Car, { foreignKey: 'UserId' })
-Car.belongsTo(User, { foreignKey: 'UserId' })
+Company.hasMany(Schedule, { foreignKey: "CompanyId" });
+Schedule.belongsTo(Company, { foreignKey: "CompanyId" });
 
-Car.hasMany(Item, { foreignKey: 'CarId' })
-Item.belongsTo(Car, { foreignKey: 'CarId' })
+User.hasOne(Residency, { foreignKey: "UserId" });
+Residency.belongsTo(User, { foreignKey: "UserId" });
 
-Product.hasMany(Item, { foreignKey: 'ProductId' })
-Item.belongsTo(Product, { foreignKey: 'ProductId' })
+User.hasOne(Cart, { foreignKey: "UserId" });
+Cart.belongsTo(User, { foreignKey: "UserId" });
 
-User.hasMany(View, { foreignKey: 'UserId' })
-View.belongsTo(User, { foreignKey: 'UserId' })
+Cart.hasMany(Item, { foreignKey: "CartId" });
+Item.belongsTo(Cart, { foreignKey: "CartId" });
 
-User.hasMany(Sale, { foreignKey: 'UserId' })
-Sale.belongsTo(User, { foreignKey: 'UserId' })
+Product.hasMany(Item, { foreignKey: "ProductId" });
+Item.belongsTo(Product, { foreignKey: "ProductId" });
 
-User.hasMany(Review, { foreignKey: 'UserId' })
-Review.belongsTo(User, { foreignKey: 'UserId' })
+User.hasMany(View, { foreignKey: "UserId" });
+View.belongsTo(User, { foreignKey: "UserId" });
 
-Product.hasMany(Review, { foreignKey: 'ProductId' })
-Review.belongsTo(Product, { foreignKey: 'ProductId' })
+User.hasMany(Sale, { foreignKey: "UserId" });
+Sale.belongsTo(User, { foreignKey: "UserId" });
 
-User.hasMany(Answer, { foreignKey: 'UserId' })
-Answer.belongsTo(User, { foreignKey: 'UserId' })
+User.hasMany(Review, { foreignKey: "UserId" });
+Review.belongsTo(User, { foreignKey: "UserId" });
 
-User.hasMany(Appointment, { foreignKey: 'UserId' })
-Appointment.belongsTo(User, { foreignKey: 'UserId' })
+Product.hasMany(Review, { foreignKey: "ProductId" });
+Review.belongsTo(Product, { foreignKey: "ProductId" });
 
-Product.hasMany(Appointment, { foreignKey: 'ProductId' })
-Appointment.belongsTo(Product, { foreignKey: 'ProductId' })
+Service.hasMany(Review, { foreignKey: "ServiceId" });
+Review.belongsTo(Service, { foreignKey: "ServiceId" });
 
-Category.hasOne(Product, { foreignKey: 'CategoryId' })
-Product.belongsTo(Category, { foreignKey: 'CategoryId' })
+User.hasMany(Answer, { foreignKey: "UserId" });
+Answer.belongsTo(User, { foreignKey: "UserId" });
 
-Category.hasOne(Service, { foreignKey: 'CategoryId' })
-Service.belongsTo(Category, { foreignKey: 'CategoryId' })
+// Cliente
+User.hasMany(Appointment, { foreignKey: "UserId" });
+// Técnico
+User.hasMany(Appointment, { foreignKey: "TechnicianId" });
+// Prroduct
+Product.hasMany(Appointment, { foreignKey: "ProductId" });
+// Servicio
+Service.hasMany(Appointment, { foreignKey: "ServiceId" });
 
-Product.hasMany(View, { foreignKey: 'ProductId' })
-View.belongsTo(Product, { foreignKey: 'ProductId' })
+Appointment.belongsTo(User, { as: "Client", foreignKey: "UserId" });
+Appointment.belongsTo(User, { as: "Technician", foreignKey: "TechnicianId" });
+Appointment.belongsTo(Product, { foreignKey: "ProductId" });
+Appointment.belongsTo(Service, { foreignKey: "ServiceId" });
 
-Sale.hasMany(SaleDetail, { foreignKey: 'SaleId' })
-SaleDetail.belongsTo(Sale, { foreignKey: 'SaleId' })
+Category.hasOne(Product, { foreignKey: "CategoryId" });
+Product.belongsTo(Category, { foreignKey: "CategoryId" });
 
-Product.hasMany(SaleDetail, { foreignKey: 'ProductId' })
-SaleDetail.belongsTo(Product, { foreignKey: 'ProductId' })
+Product.hasMany(View, { foreignKey: "ProductId" });
+View.belongsTo(Product, { foreignKey: "ProductId" });
 
-Service.hasMany(ServiceDetail, { foreignKey: 'ServiceId' })
-ServiceDetail.belongsTo(Service, { foreignKey: 'ServiceId' })
+Sale.hasMany(SaleDetail, { foreignKey: "SaleId" });
+SaleDetail.belongsTo(Sale, { foreignKey: "SaleId" });
 
-User.hasMany(ServiceDetail, { foreignKey: 'UserId' })
-ServiceDetail.belongsTo(User, { foreignKey: 'UserId' })
+Product.hasMany(SaleDetail, { foreignKey: "ProductId" });
+SaleDetail.belongsTo(Product, { foreignKey: "ProductId" });
+
+Service.hasMany(ServiceDetail, { foreignKey: "ServiceId" });
+ServiceDetail.belongsTo(Service, { foreignKey: "ServiceId" });
+
+User.hasMany(ServiceDetail, { foreignKey: "UserId" });
+ServiceDetail.belongsTo(User, { foreignKey: "UserId" });
+
+Product.hasMany(Offer, { foreignKey: "ProductId" });
+Offer.belongsTo(Product, { foreignKey: "ProductId" });
+
+Category.hasMany(Offer, { foreignKey: "CategoryId" });
+Offer.belongsTo(Category, { foreignKey: "CategoryId" });
+
+Service.hasMany(Offer, { foreignKey: "ServiceId" });
+Offer.belongsTo(Service, { foreignKey: "ServiceId" });
+
+User.hasMany(Favorite, { foreignKey: "UserId" });
+Favorite.belongsTo(User, { foreignKey: "UserId" });
+
+Product.hasMany(Favorite, { foreignKey: "ProductId" });
+Favorite.belongsTo(Product, { foreignKey: "ProductId" });
 
 export {
   sequelize,
   Answer,
+  AdditionalValue,
   Appointment,
-  Car,
+  Cart,
   Category,
   Code,
   Company,
   Item,
+  Offer,
   Product,
   Residency,
   Review,
+  Role,
   Sale,
   SaleDetail,
   Schedule,
@@ -109,4 +146,5 @@ export {
   User,
   View,
   Voucher,
-}
+  Favorite,
+};

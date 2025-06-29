@@ -1,11 +1,22 @@
-import { Router } from 'express'
-import userRouter from './user/user.route.js'
-import codeRouter from './code/code.route.js'
-import authRouter from './auth/auth.route.js'
+import { Router } from "express";
+import userRouter from "./user/user.route.js";
+import categoryRouter from "./category/category.route.js";
+import codeRouter from "./code/code.route.js";
+import authRouter from "./auth/auth.route.js";
+import productRouter from "./product/product.route.js";
+import offerRouter from "./offer/offer.route.js";
+import serviceRouter from "./service/service.route.js";
+import buyRouter from "./buy/buy.route.js";
+import favoriteRouter from "./favorite/favorite.route.js";
+const rootRouter = Router();
 
-const rootRouter = Router()
-
-rootRouter.use('/auth', authRouter)
-rootRouter.use('/codes', codeRouter)
-rootRouter.use('/users', userRouter)
-export default rootRouter
+rootRouter.use("/auth", authRouter);
+rootRouter.use("/categories", categoryRouter);
+rootRouter.use("/codes", codeRouter);
+rootRouter.use("/users", userRouter);
+rootRouter.use("/products", productRouter);
+rootRouter.use("/offers", offerRouter);
+rootRouter.use("/services", serviceRouter);
+rootRouter.use("/buys", buyRouter);
+rootRouter.use("/favorites", favoriteRouter);
+export default rootRouter;

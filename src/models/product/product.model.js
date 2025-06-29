@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ProductModel = (sq) => {
   sq.define(
-    'Product',
+    "Product",
     {
       id: {
         type: DataTypes.UUID,
@@ -22,14 +22,12 @@ const ProductModel = (sq) => {
         allowNull: false,
       },
 
-      iva: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-
-      priceIva: {
-        type: DataTypes.DECIMAL(10, 2),
+      stock: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          min: 0,
+        },
       },
 
       brand: {
@@ -37,7 +35,17 @@ const ProductModel = (sq) => {
         allowNull: false,
       },
 
+      scoreAverage: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0.0,
+      },
+
       model: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      color: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -50,11 +58,26 @@ const ProductModel = (sq) => {
         },
       },
 
-      stock: {
-        type: DataTypes.INTEGER,
+      launchDate: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
 
+      guarantee: {
+        type: DataTypes.INTEGER,
+        validate: {
+          min: 1,
+        },
+      },
+
+      specification: {
+        type: DataTypes.JSON,
+        allowNull: false,
+      },
+      dimensions: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -70,15 +93,15 @@ const ProductModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Categories',
-          key: 'id',
+          model: "Categories",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ProductModel
+export default ProductModel;

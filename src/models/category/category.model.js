@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const CategoryModel = (sq) => {
   sq.define(
-    'Category',
+    "Category",
     {
       id: {
         type: DataTypes.UUID,
@@ -14,11 +14,28 @@ const CategoryModel = (sq) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isUrl: true,
+        },
+      },
+
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      isValid: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default CategoryModel
+export default CategoryModel;
