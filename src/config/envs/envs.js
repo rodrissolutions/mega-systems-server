@@ -1,7 +1,6 @@
 import "dotenv/config";
 
 const {
-  PORT = 3000,
   POSTGRES_URI_DEV,
   POSTGRES_URI_PROD,
   SECRET_WORD,
@@ -12,6 +11,9 @@ const {
   CLOUDINARY_NAME,
   GLOBAL_PASSWORD,
 } = process.env;
+
+const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || "development";
 
 export default {
   PORT,
@@ -24,4 +26,5 @@ export default {
   CLOUDINARY_KEY,
   CLOUDINARY_NAME,
   GLOBAL_PASSWORD,
+  NODE_ENV,
 };
