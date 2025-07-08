@@ -1,8 +1,16 @@
-import { Category, Product, Review } from "../../lib/database.js";
+import { Category, Product, Review, User } from "../../lib/database.js";
 
 const listAll = async () => {
   const products = await Product.findAll({
-    include: [Category, Review],
+    include: [
+      {
+        model: Category,
+      },
+      {
+        model: Review,
+        include: [User],
+      },
+    ],
   });
 
   return { code: 200, products };

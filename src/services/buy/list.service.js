@@ -1,8 +1,21 @@
-import { Sale, SaleDetail, User } from "../../lib/database.js";
+import {
+  Category,
+  Product,
+  Sale,
+  SaleDetail,
+  User,
+  Voucher,
+} from "../../lib/database.js";
 
 const listAll = async () => {
   const sales = await Sale.findAll({
-    include: [SaleDetail],
+    include: {
+      model: SaleDetail,
+      include: {
+        model: Product,
+        include: [Category],
+      },
+    },
   });
 
   return { code: 200, sales };
@@ -17,10 +30,37 @@ const listByUser = async (UserId) => {
     where: {
       UserId,
     },
-    include: [SaleDetail],
+    include: [
+      {
+        model: SaleDetail,
+        include: {
+          model: Product,
+          include: [Category],
+        },
+      },
+      {
+        model: Voucher,
+      },
+    ],
   });
 
   return { code: 200, sales };
 };
 
-export { listAll, listByUser };
+const hasPurchased = async (UserId, ProductId) => {
+  const saleWithProduct = await Sale.findOne({
+    where: {
+      UserId,
+      status: "Pagada",
+    },
+    include: {
+      model: SaleDetail,
+      where: {
+        ProductId,
+      },
+    },
+  });
+  return !!saleWithProduct;
+};
+
+export { listAll, listByUser, hasPurchased };

@@ -56,7 +56,7 @@ const AppointmentModel = (sq) => {
 
       ServiceId: {
         type: DataTypes.UUID,
-        allowNull: true,
+        allowNull: false,
         references: {
           model: "Services",
           key: "id",

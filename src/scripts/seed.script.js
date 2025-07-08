@@ -1,5 +1,6 @@
 import {
   AdditionalValue,
+  Cart,
   Category,
   Offer,
   Product,
@@ -92,40 +93,10 @@ const seed = async () => {
     const data = {
       title: offer.title,
       description: offer.description,
-      type: offer.type,
-      typeValue: offer.typeValue,
       value: offer.value,
-      startDate: offer.startDate,
-      endDate: offer.endDate,
+      typeValue: offer.typeValue,
       isActive: offer.isActive,
     };
-
-    if (offer.category) {
-      const category = await Category.findOne({
-        where: {
-          name: offer.category,
-        },
-      });
-      if (category) data.CategoryId = category.id;
-    }
-
-    if (offer.product) {
-      const product = await Product.findOne({
-        where: {
-          name: offer.product,
-        },
-      });
-      if (product) data.ProductId = product.id;
-    }
-
-    if (offer.service) {
-      const service = await Service.findOne({
-        where: {
-          name: offer.service,
-        },
-      });
-      if (service) data.ServiceId = service.id;
-    }
 
     await Offer.findOrCreate({
       where: { title: offer.title },
@@ -163,6 +134,26 @@ const seed = async () => {
         phone: user.phone,
       },
       defaults: data,
+    });
+  }
+
+  // CReacion del carrito
+  const user = await User.findOne({
+    where: {
+      email: "maria.gomez@example.com",
+    },
+  });
+
+  const cart = await Cart.findOne({
+    where: {
+      UserId: user.id,
+    },
+  });
+
+  if (!cart) {
+    const { id } = user;
+    await Cart.create({
+      UserId: id,
     });
   }
 };

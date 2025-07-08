@@ -1,26 +1,32 @@
-import { Router } from 'express'
-import { userControllers } from '../../controllers/index.controllers.js'
-import { jwtMiddlewares } from '../../middlewares/index.middlewares.js'
-import { multerHelpers } from '../../helpers/index.helpers.js'
+import { Router } from "express";
+import { userControllers } from "../../controllers/index.controllers.js";
+import { jwtMiddlewares } from "../../middlewares/index.middlewares.js";
+import { multerHelpers } from "../../helpers/index.helpers.js";
 
-const userRouter = Router()
+const userRouter = Router();
 
 userRouter.post(
-  '/',
-  multerHelpers.upload.single('profilePicture'),
+  "/",
+  multerHelpers.upload.single("profilePicture"),
   userControllers.createUser
-)
+);
 userRouter.get(
-  '/all',
+  "/all",
   jwtMiddlewares.validateJWT,
   jwtMiddlewares.isAdmin,
   userControllers.getAll
-)
-userRouter.get(
-  '/user/:id',
-  jwtMiddlewares.validateJWT,
+);
+userRouter.get("/user/:id", userControllers.getUserById);
 
-  userControllers.getUserById
-)
+userRouter.patch(
+  "/update/withImage/:id",
+  multerHelpers.upload.single("profilePicture"),
+  userControllers.updateUserWithImage
+);
 
-export default userRouter
+userRouter.patch(
+  "/update/withoutImage/:id",
+  userControllers.updateUserWithoutImage
+);
+
+export default userRouter;

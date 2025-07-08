@@ -13,6 +13,7 @@ const {
   Category,
   Company,
   Favorite,
+  Delivery,
   Item,
   Product,
   Residency,
@@ -108,20 +109,17 @@ ServiceDetail.belongsTo(Service, { foreignKey: "ServiceId" });
 User.hasMany(ServiceDetail, { foreignKey: "UserId" });
 ServiceDetail.belongsTo(User, { foreignKey: "UserId" });
 
-Product.hasMany(Offer, { foreignKey: "ProductId" });
-Offer.belongsTo(Product, { foreignKey: "ProductId" });
-
-Category.hasMany(Offer, { foreignKey: "CategoryId" });
-Offer.belongsTo(Category, { foreignKey: "CategoryId" });
-
-Service.hasMany(Offer, { foreignKey: "ServiceId" });
-Offer.belongsTo(Service, { foreignKey: "ServiceId" });
-
 User.hasMany(Favorite, { foreignKey: "UserId" });
 Favorite.belongsTo(User, { foreignKey: "UserId" });
 
 Product.hasMany(Favorite, { foreignKey: "ProductId" });
 Favorite.belongsTo(Product, { foreignKey: "ProductId" });
+
+Sale.hasMany(Delivery, { foreignKey: "SaleId" });
+Delivery.belongsTo(Sale, { foreignKey: "SaleId" });
+
+Sale.hasOne(Voucher, { foreignKey: "SaleId" });
+Voucher.belongsTo(Sale, { foreignKey: "SaleId" });
 
 export {
   sequelize,
@@ -147,4 +145,5 @@ export {
   View,
   Voucher,
   Favorite,
+  Delivery,
 };

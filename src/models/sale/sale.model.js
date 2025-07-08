@@ -21,16 +21,15 @@ const SaleModel = (sq) => {
         allowNull: false,
       },
 
+      typeBuy: {
+        type: DataTypes.ENUM,
+        values: ["Retiro en Tienda", "Entrega a Domicilio"],
+        allowNull: false,
+      },
+
       status: {
         type: DataTypes.ENUM,
-        values: [
-          "Pendiente",
-          "Pagada",
-          "Cancelada",
-          "En revisión",
-          "Enviado",
-          "Entregado",
-        ],
+        values: ["Pendiente", "Pagada", "Cancelada", "En revisión"],
         defaultValue: "Pendiente",
       },
 

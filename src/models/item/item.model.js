@@ -32,6 +32,11 @@ const ItemModel = (sq) => {
           key: "id",
         },
       },
+
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       timestamps: false,

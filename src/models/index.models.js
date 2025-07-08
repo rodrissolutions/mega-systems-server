@@ -21,6 +21,7 @@ import RoleModel from "./role/role.model.js";
 import LogModel from "./log/log.model.js";
 import AdditionalValuesModel from "./additionalValues/additionalValues.model.js";
 import FavoriteModel from "./favorite/favorite.model.js";
+import DeliveryModel from "./delivery/delivery.model.js";
 
 export const models = [
   AdditionalValuesModel,
@@ -46,4 +47,5 @@ export const models = [
   VoucherModel,
   RoleModel,
   LogModel,
+  DeliveryModel,
 ];

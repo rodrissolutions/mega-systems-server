@@ -9,9 +9,21 @@ const ResidencyModel = (sq) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
+      fullName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       province: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [10, 10],
+        },
       },
 
       city: {
@@ -25,6 +37,12 @@ const ResidencyModel = (sq) => {
       },
       secondaryStreet: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      type: {
+        type: DataTypes.ENUM,
+        values: ["Casa", "Trabajo"],
         allowNull: false,
       },
 

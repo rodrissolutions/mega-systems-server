@@ -21,4 +21,16 @@ const listByUser = async (req, res) => {
   }
 };
 
-export { listAll, listByUser };
+const hasPurchased = async (req, res) => {
+  try {
+    const { ProductId, UserId } = req.query;
+    const bought = await buyServices.hasPurchased(UserId, ProductId);
+    res.status(200).json({ bought });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+export { listAll, listByUser, hasPurchased };

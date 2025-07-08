@@ -12,12 +12,13 @@ const CartModel = (sq) => {
 
       status: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: true,
       },
 
       UserId: {
         type: DataTypes.UUID,
         allowNull: false,
+        unique: true,
         references: {
           model: "Users",
           key: "id",
