@@ -5,6 +5,7 @@ const getAll = async (req, res) => {
     const { code, users } = await userServices.getAll();
     res.status(code).json({ users });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
@@ -15,6 +16,7 @@ const getUserById = async (req, res) => {
     const { code, message, user } = await userServices.getUserById(id);
     res.status(code).json(user ? { user } : { message });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };

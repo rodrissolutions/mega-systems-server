@@ -11,4 +11,15 @@ const listByUser = async (req, res) => {
   }
 };
 
-export { listByUser };
+const getAll = async (req, res) => {
+  try {
+    const { code, favorites } = await favoriteServices.getAll();
+
+    res.status(code).json({ favorites });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { listByUser, getAll };

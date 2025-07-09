@@ -49,6 +49,11 @@ const UserModel = (sq) => {
           isUrl: true,
         },
       },
+      gender: {
+        type: DataTypes.ENUM,
+        values: ["Masculino", "Femenino", "Otro"],
+        allowNull: false,
+      },
 
       password: {
         type: DataTypes.STRING,

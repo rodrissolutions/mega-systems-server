@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const VoucherModel = (sq) => {
   sq.define(
-    'Voucher',
+    "Voucher",
     {
       id: {
         type: DataTypes.UUID,
@@ -20,8 +20,8 @@ const VoucherModel = (sq) => {
 
       status: {
         type: DataTypes.ENUM,
-        values: ['Pendiente', 'Revisado', 'Cancelado', 'Rechazado'],
-        defaultValue: 'Pendiente',
+        values: ["Pendiente", "Aceptado", "Cancelado", "Rechazado"],
+        defaultValue: "Pendiente",
       },
 
       observations: {
@@ -33,15 +33,15 @@ const VoucherModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Sales',
-          key: 'id',
+          model: "Sales",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default VoucherModel
+export default VoucherModel;

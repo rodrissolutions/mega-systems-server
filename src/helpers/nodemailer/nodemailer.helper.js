@@ -44,11 +44,32 @@ const buyConfirmation = (to, name, code) => {
     .toString()
     .replace("${name}", name)
     .replace("${code}", code);
-  send("crisrodam1996@gmail.com", file, "Confirmación de compra");
+  send(to, file, "Confirmación de compra");
+};
+
+const recoveryPassword = (to, name, code) => {
+  const pathname = generatePathName("recovery");
+  const file = fs
+    .readFileSync(pathname, { encoding: "utf-8" })
+    .toString()
+    .replace("${name}", name)
+    .replace("${code}", code);
+  send(to, file, "Recuperación de contraseña");
+};
+
+const passwordChangeNotification = (to, name) => {
+  const pathname = generatePathName("password-change-notification");
+  const file = fs
+    .readFileSync(pathname, { encoding: "utf-8" })
+    .toString()
+    .replace("${name}", name);
+  send(to, file, "Cambio de contraseña detectado");
 };
 
 export default {
   loginNotification,
   verificationAccount,
   buyConfirmation,
+  recoveryPassword,
+  passwordChangeNotification,
 };

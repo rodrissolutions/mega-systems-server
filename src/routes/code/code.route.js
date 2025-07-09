@@ -14,6 +14,16 @@ codeRouter.post(
   codeControllers.generateNewVerificationAccountCode
 );
 
+codeRouter.post(
+  "/getRecoveryPasswordCode",
+  codeControllers.generateRecoveryPasswordCode
+);
+
+codeRouter.put(
+  "/validatePasswordRecoveryCode",
+  codeControllers.validatePasswordRecoveryCode
+);
+
 // codeRouter.post('/createCode/buy', codeControllers.createCode)
 
 export default codeRouter;

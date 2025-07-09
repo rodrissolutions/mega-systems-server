@@ -11,7 +11,7 @@ userRouter.post(
   userControllers.createUser
 );
 userRouter.get(
-  "/all",
+  "/",
   jwtMiddlewares.validateJWT,
   jwtMiddlewares.isAdmin,
   userControllers.getAll

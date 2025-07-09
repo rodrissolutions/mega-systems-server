@@ -558,6 +558,7 @@ export const users = [
     password: envs.GLOBAL_PASSWORD, // Contraseña hasheada
     Role: "Administrador",
     isVerified: true,
+    gender: "Masculino",
   },
   {
     fullName: "María Gómez",
@@ -568,6 +569,7 @@ export const users = [
     password: envs.GLOBAL_PASSWORD, // Contraseña hasheada
     Role: "Cliente",
     isVerified: true,
+    gender: "Femenino",
   },
   {
     fullName: "Carlos Ruiz",
@@ -578,6 +580,7 @@ export const users = [
     password: envs.GLOBAL_PASSWORD, // Contraseña hasheada
     Role: "Técnico",
     isVerified: true,
+    gender: "Masculino",
   },
   {
     fullName: "Ana Martínez",
@@ -588,5 +591,6 @@ export const users = [
     password: envs.GLOBAL_PASSWORD, // Contraseña hasheada
     Role: "Repartidor",
     isVerified: true,
+    gender: "Otro",
   },
 ];

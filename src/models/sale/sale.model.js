@@ -16,6 +16,27 @@ const SaleModel = (sq) => {
         unique: true,
       },
 
+      subTotal: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+
+      disccount: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: true,
+      },
+
+      disccountValue: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: true,
+      },
+
+      disccountType: {
+        type: DataTypes.ENUM,
+        values: ["Porcentaje", "Fijo"],
+        allowNull: true,
+      },
+
       total: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
@@ -29,7 +50,7 @@ const SaleModel = (sq) => {
 
       status: {
         type: DataTypes.ENUM,
-        values: ["Pendiente", "Pagada", "Cancelada", "En revisión"],
+        values: ["Pendiente", "Pagada", "Rechazada"],
         defaultValue: "Pendiente",
       },
 

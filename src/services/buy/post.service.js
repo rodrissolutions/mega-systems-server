@@ -12,6 +12,10 @@ const saleWithDelivery = async (data) => {
   const {
     UserId,
     Cart,
+    subTotal,
+    disccount,
+    disccountValue,
+    disccountType,
     total,
     Delivery: DeliveryData,
     typeBuy,
@@ -28,6 +32,10 @@ const saleWithDelivery = async (data) => {
   // 2. Crear venta
   const sale = await Sale.create({
     UserId,
+    subTotal,
+    disccount,
+    disccountValue,
+    disccountType,
     total,
     typeBuy,
     paymentMethod,

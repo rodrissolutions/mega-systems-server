@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ViewModel = (sq) => {
   sq.define(
-    'View',
+    "View",
     {
       id: {
         type: DataTypes.UUID,
@@ -14,7 +14,7 @@ const ViewModel = (sq) => {
         allowNull: false,
       },
 
-      firtView: {
+      firstView: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
@@ -29,24 +29,24 @@ const ViewModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Products',
-          key: 'id',
+          model: "Products",
+          key: "id",
         },
       },
 
       UserId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ViewModel
+export default ViewModel;

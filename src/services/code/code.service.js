@@ -196,6 +196,90 @@ const generateNewVerificationAccountCode = async (data) => {
   return { code: 200, codeData: codeCreated, user };
 };
 
+const generateRecoveryPasswordCode = async (data) => {
+  const { email } = data;
+
+  // Buscar el usuario por email
+  const user = await User.findOne({ where: { email } });
+
+  if (!user) {
+    return { code: 404, message: "Usuario no encontrado o registrado" };
+  }
+
+  const { id } = user;
+
+  // Buscar si ya tiene un código válido de recuperación
+  const existingCode = await Code.findOne({
+    where: {
+      UserId: id,
+      type: "Recuperación",
+      isValid: true,
+    },
+  });
+
+  // Si existe un código y aún no ha expirado
+  if (existingCode && existingCode.expirationTime > new Date()) {
+    return {
+      code: 400,
+      message: "Ya tienes un código de recuperación válido",
+    };
+  }
+
+  // Si hay un código anterior, marcarlo como inválido
+  if (existingCode) {
+    await existingCode.update({ isValid: false });
+  }
+
+  // Generar nuevo código y calcular expiración
+  const newCode = codeUtils.createCode();
+  const expirationTime = new Date(Date.now() + 5 * 60 * 1000); // 5 minutos
+
+  // Crear nuevo código en la base de datos
+  const codeCreated = await Code.create({
+    type: "Recuperación",
+    UserId: id,
+    code: newCode,
+    expirationTime,
+  });
+
+  return {
+    code: 200,
+    codeData: codeCreated,
+    user,
+  };
+};
+
+const validatePasswordRecoveryCode = async (email, code) => {
+  // Buscar usuario por email
+  const user = await User.findOne({ where: { email } });
+
+  if (!user) {
+    return { code: 404, message: "Usuario no encontrado o registrado" };
+  }
+
+  const { id } = user;
+
+  // Buscar el código de recuperación válido y coincidente
+  const codeFound = await Code.findOne({
+    where: {
+      UserId: id,
+      type: "Recuperación",
+      isValid: true,
+      code,
+    },
+  });
+
+  // Validar existencia y vigencia del código
+  if (!codeFound || codeFound.expirationTime < new Date()) {
+    return { code: 400, message: "Código no válido o ya expirado" };
+  }
+
+  // Invalida el código para que no se reutilice
+  await codeFound.update({ isValid: false });
+
+  return { code: 200, message: "Código verificado con éxito" };
+};
+
 export default {
   createCode,
   getCode,
@@ -203,4 +287,6 @@ export default {
   updateCode,
   validateBuyCode,
   generateNewVerificationAccountCode,
+  generateRecoveryPasswordCode,
+  validatePasswordRecoveryCode,
 };

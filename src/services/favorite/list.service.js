@@ -1,4 +1,10 @@
-import { Category, Favorite, Product, Review } from "../../lib/database.js";
+import {
+  Category,
+  Favorite,
+  Product,
+  Review,
+  User,
+} from "../../lib/database.js";
 
 const listByUser = async (UserId) => {
   const favorites = await Favorite.findAll({
@@ -13,4 +19,12 @@ const listByUser = async (UserId) => {
   return { code: 200, favorites };
 };
 
-export { listByUser };
+const getAll = async () => {
+  const favorites = await Favorite.findAll({
+    include: [Product, User],
+  });
+
+  return { code: 200, favorites };
+};
+
+export { listByUser, getAll };

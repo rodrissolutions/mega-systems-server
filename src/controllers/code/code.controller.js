@@ -1,5 +1,5 @@
 import nodemailerHelper from "../../helpers/nodemailer/nodemailer.helper.js";
-import { codeServices } from "../../services/index.services.js";
+import { authServices, codeServices } from "../../services/index.services.js";
 import { codeUtils } from "../../utils/index.utils.js";
 
 const createCode = async (req, res) => {
@@ -111,6 +111,52 @@ const generateNewVerificationAccountCode = async (req, res) => {
   }
 };
 
+const generateRecoveryPasswordCode = async (req, res) => {
+  try {
+    const data = req.body;
+    const { code, codeData, message, user } =
+      await codeServices.generateRecoveryPasswordCode(data);
+
+    if (code === 200) {
+      nodemailerHelper.recoveryPassword(
+        user.email,
+        user.fullName,
+        codeData.code
+      );
+    }
+
+    res.status(code).json(message ? { message } : { codeData });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const validatePasswordRecoveryCode = async (req, res) => {
+  try {
+    const { email, code, password } = req.body;
+    const { code: codeResponse, message } =
+      await codeServices.validatePasswordRecoveryCode(email, code);
+
+    if (codeResponse !== 200) return res.status(codeResponse).json({ message });
+
+    const {
+      code: codeChangePassword,
+      message: messageChangePassword,
+      user,
+    } = await authServices.changePassword(email, password);
+
+    if (user) {
+      nodemailerHelper.passwordChangeNotification(user.email, user.fullName);
+    }
+
+    res.status(codeChangePassword).json({ message: messageChangePassword });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export default {
   createCode,
   getCode,
@@ -118,4 +164,6 @@ export default {
   updateCode,
   validateBuyCode,
   generateNewVerificationAccountCode,
+  generateRecoveryPasswordCode,
+  validatePasswordRecoveryCode,
 };

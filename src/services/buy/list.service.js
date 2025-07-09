@@ -9,13 +9,21 @@ import {
 
 const listAll = async () => {
   const sales = await Sale.findAll({
-    include: {
-      model: SaleDetail,
-      include: {
-        model: Product,
-        include: [Category],
+    include: [
+      {
+        model: SaleDetail,
+        include: {
+          model: Product,
+          include: [Category],
+        },
       },
-    },
+      {
+        model: User,
+      },
+      {
+        model: Voucher,
+      },
+    ],
   });
 
   return { code: 200, sales };
