@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const ScheduleModel = (sq) => {
   sq.define(
-    'Schedule',
+    "Schedule",
     {
       id: {
         type: DataTypes.UUID,
@@ -13,13 +13,13 @@ const ScheduleModel = (sq) => {
       day: {
         type: DataTypes.ENUM,
         values: [
-          'Lunes',
-          'Martes',
-          'Miercoles',
-          'Jueves',
-          'Viernes',
-          'Sabado',
-          'Domingo',
+          "Lunes",
+          "Martes",
+          "Miercoles",
+          "Jueves",
+          "Viernes",
+          "Sabado",
+          "Domingo",
         ],
         allowNull: false,
       },
@@ -38,20 +38,11 @@ const ScheduleModel = (sq) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-
-      CompanyId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-          model: 'Companies',
-          key: 'id',
-        },
-      },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default ScheduleModel
+export default ScheduleModel;

@@ -20,7 +20,6 @@ const saveVoucher = async (data) => {
   const voucher = await Voucher.create(data);
   if (!voucher) return { code: 500, message: "Error al crear el voucher" };
 
-  await saleFound.update({ status: "En revisión" });
   return { code: 201, voucher, message: "Voucher guardado exitosamente" };
 };
 

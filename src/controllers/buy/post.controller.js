@@ -10,4 +10,14 @@ const saleWithDelivery = async (req, res) => {
   }
 };
 
-export { saleWithDelivery };
+const saleWithoutDelivery = async (req, res) => {
+  try {
+    const { code, message } = await buyServices.saleWithoutDelivery(req.body);
+    res.status(code).json({ message });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { saleWithDelivery, saleWithoutDelivery };

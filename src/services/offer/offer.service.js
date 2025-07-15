@@ -1,5 +1,10 @@
-import { listAll } from "./list.service.js";
+import { getOffer, getAllOffers } from "./list.service.js";
+import { createOffer } from "./post.service.js";
+import { updateOffer } from "./update.service.js";
 
 export default {
-  listAll,
+  getAllOffers,
+  getOffer,
+  createOffer,
+  updateOffer,
 };

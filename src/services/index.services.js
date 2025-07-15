@@ -13,6 +13,8 @@ import cartServices from "./cart/cart.service.js";
 import appointmentServices from "./appointment/appointment.service.js";
 import viewServices from "./view/view.service.js";
 import reviewServices from "./review/review.service.js";
+import bankAccountServices from "./bank-account/bankAccount.service.js";
+import scheduleServices from "./schedule/schedule.service.js";
 
 export {
   appointmentServices,
@@ -30,4 +32,6 @@ export {
   viewServices,
   voucherServices,
   reviewServices,
+  bankAccountServices,
+  scheduleServices,
 };

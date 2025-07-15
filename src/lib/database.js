@@ -30,6 +30,7 @@ const {
   Code,
   Offer,
   Log,
+  BankAccount,
 } = sequelize.models;
 
 Role.hasMany(User, { foreignKey: "RoleId" });
@@ -43,9 +44,6 @@ Company.belongsTo(User, { foreignKey: "AdminId" });
 
 User.hasMany(Code, { foreignKey: "UserId" });
 Code.belongsTo(User, { foreignKey: "UserId" });
-
-Company.hasMany(Schedule, { foreignKey: "CompanyId" });
-Schedule.belongsTo(Company, { foreignKey: "CompanyId" });
 
 User.hasOne(Residency, { foreignKey: "UserId" });
 Residency.belongsTo(User, { foreignKey: "UserId" });
@@ -115,7 +113,7 @@ Favorite.belongsTo(User, { foreignKey: "UserId" });
 Product.hasMany(Favorite, { foreignKey: "ProductId" });
 Favorite.belongsTo(Product, { foreignKey: "ProductId" });
 
-Sale.hasMany(Delivery, { foreignKey: "SaleId" });
+Sale.hasOne(Delivery, { foreignKey: "SaleId" });
 Delivery.belongsTo(Sale, { foreignKey: "SaleId" });
 
 Sale.hasOne(Voucher, { foreignKey: "SaleId" });
@@ -146,4 +144,5 @@ export {
   Voucher,
   Favorite,
   Delivery,
+  BankAccount,
 };

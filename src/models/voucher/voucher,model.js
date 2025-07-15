@@ -20,7 +20,7 @@ const VoucherModel = (sq) => {
 
       status: {
         type: DataTypes.ENUM,
-        values: ["Pendiente", "Aceptado", "Cancelado", "Rechazado"],
+        values: ["Pendiente", "Pagada", "Rechazada"],
         defaultValue: "Pendiente",
       },
 

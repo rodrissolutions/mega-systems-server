@@ -2,6 +2,9 @@ import { Category, Product, Review, User } from "../../lib/database.js";
 
 const listAll = async () => {
   const products = await Product.findAll({
+    where: {
+      isActive: true,
+    },
     include: [
       {
         model: Category,

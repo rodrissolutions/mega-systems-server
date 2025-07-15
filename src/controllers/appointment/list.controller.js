@@ -11,4 +11,14 @@ const listByUser = async (req, res) => {
   }
 };
 
-export { listByUser };
+const listAll = async (req, res) => {
+  try {
+    const { code, appointments } = await appointmentServices.listAll();
+    res.status(code).json({ appointments });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { listByUser, listAll };

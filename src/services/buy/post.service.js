@@ -95,6 +95,83 @@ const saleWithDelivery = async (data) => {
   };
 };
 
-const saleWithoutDelivery = (data) => {};
+const saleWithoutDelivery = async (data) => {
+  const {
+    UserId,
+    Cart,
+    subTotal,
+    disccount,
+    disccountValue,
+    disccountType,
+    total,
+    typeBuy,
+    paymentMethod,
+  } = data;
+
+  const { Items, id: CartId } = Cart;
+
+  // 1. Validar usuario
+  const userFound = await User.findByPk(UserId);
+  if (!userFound) return { code: 404, message: "Usuario no encontrado" };
+
+  const newCode = codeUtils.createCode();
+
+  // 2. Crear venta
+  const sale = await Sale.create({
+    UserId,
+    subTotal,
+    disccount,
+    disccountValue,
+    disccountType,
+    total,
+    typeBuy,
+    paymentMethod,
+    code: newCode,
+  });
+
+  if (!sale) return { code: 500, message: "Error al crear la venta" };
+
+  const { id: SaleId } = sale;
+
+  // 3. Armar detalles de venta con precios reales y subtotal
+  const saleItems = [];
+
+  for (const item of Items) {
+    const product = await Product.findByPk(item.ProductId);
+    if (!product) {
+      return {
+        code: 404,
+        message: `Producto con ID ${item.ProductId} no encontrado`,
+      };
+    }
+
+    const unitPrice = parseFloat(product.price);
+    const quantity = item.quantity;
+    const subTotal = parseFloat((unitPrice * quantity).toFixed(2));
+
+    saleItems.push({
+      SaleId,
+      ProductId: item.ProductId,
+      quantity,
+      unitPrice,
+      subTotal,
+    });
+  }
+
+  // 4. Crear detalles de venta
+  await SaleDetail.bulkCreate(saleItems);
+
+  // 5. Eliminar los ítems del carrito
+  await Item.destroy({
+    where: {
+      CartId,
+    },
+  });
+
+  return {
+    code: 200,
+    message: "Su compra se ha registrado con éxito",
+  };
+};
 
 export { saleWithDelivery, saleWithoutDelivery };

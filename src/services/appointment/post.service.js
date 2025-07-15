@@ -1,4 +1,4 @@
-import { Appointment, Service, User } from "../../lib/database.js";
+import { Appointment, Product, Service, User } from "../../lib/database.js";
 
 const checkAppointmentAvailability = async ({ date, time }) => {
   const startTime = new Date(`${date}T${time}`);

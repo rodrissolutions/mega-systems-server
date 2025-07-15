@@ -1,6 +1,8 @@
 import {
   Category,
+  Delivery,
   Product,
+  Residency,
   Sale,
   SaleDetail,
   User,
@@ -19,9 +21,13 @@ const listAll = async () => {
       },
       {
         model: User,
+        include: [Residency],
       },
       {
         model: Voucher,
+      },
+      {
+        model: Delivery,
       },
     ],
   });

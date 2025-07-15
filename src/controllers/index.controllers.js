@@ -13,10 +13,14 @@ import voucherControllers from "./voucher/voucher.controller.js";
 import appointmentControllers from "./appointment/appointment.controller.js";
 import viewControllers from "./view/view.controller.js";
 import reviewControllers from "./review/review.controller.js";
+import bankAccountControllers from "./bank-account/bankAccount.controller.js";
+
+import scheduleControllers from "./schedule/schedule.controller.js";
 
 export {
   appointmentControllers,
   authControllers,
+  bankAccountControllers,
   cartControllers,
   categoryControllers,
   codeControllers,
@@ -30,4 +34,5 @@ export {
   viewControllers,
   voucherControllers,
   reviewControllers,
+  scheduleControllers,
 };

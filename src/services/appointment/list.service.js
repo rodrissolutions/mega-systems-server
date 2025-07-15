@@ -2,6 +2,7 @@ import {
   Appointment,
   Category,
   Product,
+  Role,
   Service,
   User,
 } from "../../lib/database.js";
@@ -29,4 +30,30 @@ const listByUser = async (id) => {
   return { code: 200, appointments };
 };
 
-export { listByUser };
+const listAll = async () => {
+  const appointments = await Appointment.findAll({
+    include: [
+      {
+        model: Product,
+        include: [Category],
+      },
+      {
+        model: Service,
+      },
+      {
+        model: User,
+        as: "Client",
+        include: [Role],
+      },
+      {
+        model: User,
+        as: "Technician",
+        include: [Role],
+      },
+    ],
+  });
+
+  return { code: 200, appointments };
+};
+
+export { listByUser, listAll };

@@ -84,7 +84,7 @@ const ProductModel = (sq) => {
         defaultValue: DataTypes.NOW,
       },
 
-      isAvailable: {
+      isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },

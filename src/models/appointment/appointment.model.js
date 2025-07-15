@@ -31,9 +31,9 @@ const AppointmentModel = (sq) => {
       },
 
       status: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+        type: DataTypes.ENUM,
+        values: ["Pendiente", "Cancelada", "En proceso", "Terminada"],
+        defaultValue: "Pendiente",
       },
 
       UserId: {

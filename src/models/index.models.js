@@ -22,7 +22,7 @@ import LogModel from "./log/log.model.js";
 import AdditionalValuesModel from "./additionalValues/additionalValues.model.js";
 import FavoriteModel from "./favorite/favorite.model.js";
 import DeliveryModel from "./delivery/delivery.model.js";
-
+import BankAccountModel from "./bank-account/BanckAccount.model.js";
 export const models = [
   AdditionalValuesModel,
   AnswerModel,
@@ -48,4 +48,5 @@ export const models = [
   RoleModel,
   LogModel,
   DeliveryModel,
+  BankAccountModel,
 ];

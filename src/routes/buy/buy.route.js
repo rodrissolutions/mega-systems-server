@@ -13,6 +13,22 @@ buyRouter.get(
 buyRouter.get("/user/:id", buyControllers.listByUser);
 
 buyRouter.post("/withDelivery", buyControllers.saleWithDelivery);
+buyRouter.post("/withoutDelivery", buyControllers.saleWithoutDelivery);
+
 buyRouter.get("/hasPurchased", buyControllers.hasPurchased);
+
+buyRouter.put(
+  "/:id",
+  jwtMiddlewares.validateJWT,
+  jwtMiddlewares.isAdmin,
+  buyControllers.updateSale
+);
+
+buyRouter.patch(
+  "/confirm-payment/:id",
+  jwtMiddlewares.validateJWT,
+  jwtMiddlewares.isAdmin,
+  buyControllers.confirmPayment
+);
 
 export default buyRouter;

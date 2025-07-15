@@ -1,6 +1,6 @@
 import { Offer } from "../../lib/database.js";
 
-const listAll = async () => {
+const getOffer = async () => {
   const offer = await Offer.findOne({
     where: {
       isActive: true,
@@ -9,4 +9,9 @@ const listAll = async () => {
   return { code: 200, offer };
 };
 
-export { listAll };
+const getAllOffers = async () => {
+  const offers = await Offer.findAll();
+  return { code: 200, offers };
+};
+
+export { getOffer, getAllOffers };

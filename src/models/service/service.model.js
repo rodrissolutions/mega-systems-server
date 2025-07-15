@@ -29,6 +29,11 @@ const ServiceModel = (sq) => {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
+
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       timestamps: false,

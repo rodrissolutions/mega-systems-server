@@ -14,6 +14,8 @@ import voucherRouter from "./voucher/voucher.route.js";
 import appointmentRouter from "./appointment/appointment.route.js";
 import viewRouter from "./view/view.route.js";
 import reviewRouter from "./review/review.route.js";
+import bankAccountRouter from "./bank-account/bankAccount.route.js";
+import scheduleRouter from "./schedule/schedule.route.js";
 const rootRouter = Router();
 
 rootRouter.use("/auth", authRouter);
@@ -31,4 +33,6 @@ rootRouter.use("/vouchers", voucherRouter);
 rootRouter.use("/appointments", appointmentRouter);
 rootRouter.use("/views", viewRouter);
 rootRouter.use("/reviews", reviewRouter);
+rootRouter.use("/bank-accounts", bankAccountRouter);
+rootRouter.use("/schedules", scheduleRouter);
 export default rootRouter;

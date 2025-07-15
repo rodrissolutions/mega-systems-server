@@ -1,8 +1,8 @@
 import { offerServices } from "../../services/index.services.js";
 
-const listAll = async (req, res) => {
+const getOffer = async (req, res) => {
   try {
-    const { code, offer } = await offerServices.listAll();
+    const { code, offer } = await offerServices.getOffer();
     res.status(code).json({ offer });
   } catch (error) {
     console.log(error.message);
@@ -10,4 +10,14 @@ const listAll = async (req, res) => {
   }
 };
 
-export { listAll };
+const getAllOffers = async (req, res) => {
+  try {
+    const { code, offers } = await offerServices.getAllOffers();
+    res.status(code).json({ offers });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getOffer, getAllOffers };
