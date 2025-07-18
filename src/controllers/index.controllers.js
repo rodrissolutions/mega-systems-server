@@ -16,6 +16,7 @@ import reviewControllers from "./review/review.controller.js";
 import bankAccountControllers from "./bank-account/bankAccount.controller.js";
 
 import scheduleControllers from "./schedule/schedule.controller.js";
+import companyControllers from "./company/company.controller.js";
 
 export {
   appointmentControllers,
@@ -24,6 +25,7 @@ export {
   cartControllers,
   categoryControllers,
   codeControllers,
+  companyControllers,
   favoriteControllers,
   userControllers,
   offerControllers,

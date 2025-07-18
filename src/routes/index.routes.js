@@ -16,10 +16,12 @@ import viewRouter from "./view/view.route.js";
 import reviewRouter from "./review/review.route.js";
 import bankAccountRouter from "./bank-account/bankAccount.route.js";
 import scheduleRouter from "./schedule/schedule.route.js";
+import companyRouter from "./company/company.route.js";
 const rootRouter = Router();
 
 rootRouter.use("/auth", authRouter);
 rootRouter.use("/categories", categoryRouter);
+rootRouter.use("/companies", companyRouter);
 rootRouter.use("/codes", codeRouter);
 rootRouter.use("/users", userRouter);
 rootRouter.use("/products", productRouter);

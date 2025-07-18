@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 const CompanyModel = (sq) => {
   sq.define(
-    'Company',
+    "Company",
     {
       id: {
         type: DataTypes.UUID,
@@ -56,9 +56,6 @@ const CompanyModel = (sq) => {
       web: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-          isUrl: true,
-        },
       },
 
       logo: {
@@ -79,15 +76,15 @@ const CompanyModel = (sq) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
       },
     },
     {
       timestamps: false,
     }
-  )
-}
+  );
+};
 
-export default CompanyModel
+export default CompanyModel;

@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import { User } from "../../lib/database.js";
+import { Residency, Role, User } from "../../lib/database.js";
 
 const updateUser = async (id, data) => {
   const user = await User.findOne({ where: { id } });
@@ -32,6 +32,7 @@ const updateUser = async (id, data) => {
 
   const updatedUser = await User.findOne({
     where: { id },
+    include: [Residency, Role],
     attributes: { exclude: ["password"] }, // Excluye la contraseña
   });
 

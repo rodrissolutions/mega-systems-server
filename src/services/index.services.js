@@ -15,6 +15,7 @@ import viewServices from "./view/view.service.js";
 import reviewServices from "./review/review.service.js";
 import bankAccountServices from "./bank-account/bankAccount.service.js";
 import scheduleServices from "./schedule/schedule.service.js";
+import companyServices from "./company/company.service.js";
 
 export {
   appointmentServices,
@@ -22,6 +23,7 @@ export {
   buyServices,
   categoryServices,
   cartServices,
+  companyServices,
   codeServices,
   favoriteServices,
   userServices,
