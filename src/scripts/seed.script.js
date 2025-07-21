@@ -140,7 +140,7 @@ const seed = async () => {
   // CReacion del carrito
   const user = await User.findOne({
     where: {
-      email: "maria.gomez@example.com",
+      email: "maria.gomez85@gmail.com",
     },
   });
 
