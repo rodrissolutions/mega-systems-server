@@ -707,3 +707,14 @@ export const users = [
     gender: "Masculino",
   },
 ];
+
+export const bankAccounts = [
+  {
+    bankName: "Banco Pichincha",
+    accountHolder: "Lucas Cedeño",
+    accountNumber: "2206535234",
+    accountType: "Ahorro",
+    identification: "0550407852",
+    isActive: true,
+  },
+];

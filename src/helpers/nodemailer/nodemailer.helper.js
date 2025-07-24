@@ -85,6 +85,51 @@ const acceptVoucher = (to, name) => {
   send(to, file, "Comprobante de pago aceptado");
 };
 
+const sendBuyInvoice = (to, cliente, total) => {
+  const pathname = generatePathName("buyInvoce");
+  const file = fs.readFileSync(pathname, { encoding: "utf-8" }).toString();
+  const now = new Date();
+  const dateFormatted = now.toLocaleString("es-EC", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const html = file
+    .replace("${cliente}", cliente)
+    .replace("${total}", total)
+    .replace("${date}", dateFormatted);
+
+  send(to, html, "Confirmación de compra");
+};
+
+const sendBuyInvoiceTrans = (to, cliente, total, account) => {
+  const pathname = generatePathName("buyInvoceTrans");
+  const file = fs.readFileSync(pathname, { encoding: "utf-8" }).toString();
+  const now = new Date();
+  const dateFormatted = now.toLocaleString("es-EC", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const html = file
+    .replace("${cliente}", cliente)
+    .replace("${total}", total)
+    .replace("${date}", dateFormatted)
+    .replace("${banco}", account.bankName)
+    .replace("${cuenta}", account.accountNumber)
+    .replace("${titular}", account.accountHolder);
+
+  send(to, html, "Confirmación de compra");
+};
+
 export default {
   loginNotification,
   verificationAccount,
@@ -93,4 +138,6 @@ export default {
   passwordChangeNotification,
   rejectVoucher,
   acceptVoucher,
+  sendBuyInvoice,
+  sendBuyInvoiceTrans,
 };

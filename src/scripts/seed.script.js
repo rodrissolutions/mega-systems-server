@@ -1,5 +1,6 @@
 import {
   AdditionalValue,
+  BankAccount,
   Cart,
   Category,
   Offer,
@@ -10,6 +11,7 @@ import {
 } from "../lib/database.js";
 import {
   additionalValues,
+  bankAccounts,
   categories,
   offers,
   products,
@@ -154,6 +156,13 @@ const seed = async () => {
     const { id } = user;
     await Cart.create({
       UserId: id,
+    });
+  }
+
+  for (const bankAccount of bankAccounts) {
+    await BankAccount.findOrCreate({
+      where: { accountNumber: bankAccount.accountNumber },
+      defaults: bankAccount,
     });
   }
 };
