@@ -21,7 +21,9 @@ const login = async (email, password) => {
   return {
     code: 200,
     user: userWithoutPassword,
-    message: `Bienvenido ${user.fullName}`,
+    message: `${user.gender === "Femenino" ? "Bienvenida " : "Bienvenido "} ${
+      user.fullName
+    }`,
   };
 };
 

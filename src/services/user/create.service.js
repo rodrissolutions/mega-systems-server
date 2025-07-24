@@ -1,4 +1,4 @@
-import { Role, User } from "../../lib/database.js";
+import { Cart, Role, User } from "../../lib/database.js";
 
 const existUserByKey = async (key, value) => {
   const user = await User.findOne({ where: { [key]: value } });
@@ -31,13 +31,25 @@ const createUser = async (data) => {
     ...data,
     RoleId: id,
   });
-  return user
-    ? {
-        code: 200,
-        user: user.dataValues,
-        message: "Registro exitoso. Verifique su cuente por correo",
-      }
-    : { code: 400, message: "Error al crear el usuario" };
+
+  if (!user) return { code: 400, message: "Error al crear el usuario" };
+
+  const cart = await Cart.findOne({
+    where: {
+      UserId: user.id,
+    },
+  });
+
+  if (!cart) {
+    await Cart.create({
+      UserId: user.id,
+    });
+  }
+  return {
+    code: 200,
+    user: user.dataValues,
+    message: "Registro exitoso. Verifique su cuente por correo",
+  };
 };
 
 export { createUser };
