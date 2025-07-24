@@ -26,7 +26,11 @@ const updateSale = async (id, data) => {
   await sale.update({
     status,
   });
-  return { code: 200, message: "Venta actualizada exitosamente" };
+  return {
+    code: 200,
+    message: "Venta actualizada exitosamente",
+    UserId: sale.UserId,
+  };
 };
 
 const confirmPayment = async (id) => {
@@ -39,7 +43,11 @@ const confirmPayment = async (id) => {
   await sale.update({
     status: "Pagada",
   });
-  return { code: 200, message: "Venta actualizada exitosamente" };
+  return {
+    code: 200,
+    message: "Venta actualizada exitosamente",
+    UserId: sale.UserId,
+  };
 };
 
 export { updateSale, confirmPayment };

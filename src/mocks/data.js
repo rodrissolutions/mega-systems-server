@@ -18,7 +18,7 @@ export const categories = [
     description:
       "Complementos tecnológicos como fundas, cables, soportes, etc.",
     image:
-      "https://lh3.googleusercontent.com/proxy/quh90dR0c-Sfpt2aKwYFYjVGRWUfhVWoUCcu8fK4JkVlHWcIULaratYk8PUfWa1h-GuGW1Vsf_CooSTGFvY7UC9jY8wKcSrqi6U8irfTX6R65DQ78mVvwgq4OBJRJRkA2nOPmFkr8o5dTIHwQyXYAXQ",
+      "https://intelcomex.com/wp-content/uploads/2021/09/Accesorios_para_PC-300x300.png",
   },
   {
     name: "Componentes",
@@ -342,7 +342,8 @@ export const products = [
     brand: "Dell",
     model: "P2419H",
     color: "Negro",
-    photo: "https://shop.nikotron.us/images/grafics/24LCD.jpg",
+    photo:
+      "https://sedinternationalb2c.vtexassets.com/arquivos/ids/157560-1200-auto?v=638356053845330000&width=1200&height=auto&aspect=true",
     launchDate: "2019-07-01",
     guarantee: 36,
     specification: {
@@ -550,10 +551,10 @@ export const schedules = [
 
 export const users = [
   {
-    fullName: "Juan Pérez",
+    fullName: "Lucas Cedeño",
     dni: "0123456789",
     phone: "0998765432",
-    email: "juan.perez42@gmail.com",
+    email: "lucas.cedeño42@gmail.com",
     photo: "https://randomuser.me/api/portraits/men/1.jpg",
     password: envs.GLOBAL_PASSWORD,
     Role: "Administrador",
@@ -600,6 +601,17 @@ export const users = [
     dni: "3344556677",
     phone: "0987654321",
     email: "lucia.torres19@gmail.com",
+    photo: "https://randomuser.me/api/portraits/women/10.jpg",
+    password: envs.GLOBAL_PASSWORD,
+    Role: "Cliente",
+    isVerified: true,
+    gender: "Femenino",
+  },
+  {
+    fullName: "Valeria Guamán",
+    dni: "0550407852",
+    phone: "0959797893",
+    email: "vguamancapa@gmail.com",
     photo: "https://randomuser.me/api/portraits/women/10.jpg",
     password: envs.GLOBAL_PASSWORD,
     Role: "Cliente",

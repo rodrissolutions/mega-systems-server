@@ -5,7 +5,7 @@ import seed from "./src/scripts/seed.script.js";
 sequelize
   .sync({
     logging: false,
-    force: false,
+    force: true,
     alter: true,
   })
   .then((res) => {

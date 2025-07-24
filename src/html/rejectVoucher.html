@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Notificación de inicio de sesión</title>
+    <title>Comprobante Rechazado</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
       }
 
       .header {
-        background-color: #a31121; /* Color del logo */
+        background-color: #a31121;
         padding: 15px 20px;
         display: flex;
         align-items: center;
@@ -48,6 +48,7 @@
 
       .content {
         padding: 20px;
+        text-align: center;
       }
 
       .content p {
@@ -55,31 +56,18 @@
         margin-bottom: 10px;
       }
 
-      .title {
+      .code-box {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 15px 25px;
+        font-size: 18px;
         font-weight: bold;
-        text-align: center;
-        margin: 20px 0 10px;
-        font-size: 16px;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-        margin-bottom: 20px;
-      }
-
-      th {
-        text-align: left;
-        background-color: #f2f2f2;
-        padding: 8px;
-        font-weight: bold;
-        border: 1px solid #ddd;
-      }
-
-      td {
-        padding: 8px;
-        border: 1px solid #ddd;
+        color: #a31121;
+        border: 2px dashed #a31121;
+        border-radius: 8px;
+        background-color: #fff8f8;
+        max-width: 90%;
+        word-wrap: break-word;
       }
 
       .footer {
@@ -88,6 +76,7 @@
         color: #555;
         background-color: #fafafa;
         border-top: 1px solid #eee;
+        text-align: center;
       }
 
       .footer strong {
@@ -109,28 +98,20 @@
       </div>
 
       <div class="content">
-        <p><strong>Fecha:</strong> sábado, 10 de mayo de 2025 14:35</p>
-        <p class="title">Ingreso al sistema</p>
-        <p>Tu ingreso se realizó con éxito.</p>
-
-        <table>
-          <tr>
-            <th>IP:</th>
-            <td>66.231.75.162</td>
-          </tr>
-          <tr>
-            <th>Ubicación:</th>
-            <td>Ecuador</td>
-          </tr>
-          <tr>
-            <th>Dispositivo:</th>
-            <td>Chrome en Windows 10</td>
-          </tr>
-        </table>
-
+        <p><strong>Hola ${name}</strong></p>
         <p>
-          Si no has solicitado este servicio, comunícate de inmediato con
-          nuestro equipo técnico.
+          Lamentamos informarte que tu comprobante de pago ha sido
+          <strong>rechazado</strong>.
+        </p>
+        <p>Motivo de rechazo:</p>
+        <div class="code-box">${observacion}</div>
+        <p>
+          Te invitamos a revisar la observación y volver a subir un comprobante
+          válido desde la aplicación.
+        </p>
+        <p>
+          Si tienes dudas o necesitas asistencia, no dudes en ponerte en
+          contacto con nuestro equipo de soporte.
         </p>
       </div>
 

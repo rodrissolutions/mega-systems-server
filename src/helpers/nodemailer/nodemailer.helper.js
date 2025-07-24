@@ -66,10 +66,31 @@ const passwordChangeNotification = (to, name) => {
   send(to, file, "Cambio de contraseña detectado");
 };
 
+const rejectVoucher = (to, name, observation) => {
+  const pathname = generatePathName("rejectVoucher");
+  const file = fs
+    .readFileSync(pathname, { encoding: "utf-8" })
+    .toString()
+    .replace("${name}", name)
+    .replace("${observation}", observation);
+  send(to, file, "Comprobante de pago rechazado");
+};
+
+const acceptVoucher = (to, name) => {
+  const pathname = generatePathName("acceptVoucher");
+  const file = fs
+    .readFileSync(pathname, { encoding: "utf-8" })
+    .toString()
+    .replace("${name}", name);
+  send(to, file, "Comprobante de pago aceptado");
+};
+
 export default {
   loginNotification,
   verificationAccount,
   buyConfirmation,
   recoveryPassword,
   passwordChangeNotification,
+  rejectVoucher,
+  acceptVoucher,
 };
