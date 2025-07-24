@@ -5,13 +5,13 @@ import seed from "./src/scripts/seed.script.js";
 sequelize
   .sync({
     logging: false,
-    force: true,
+    force: false,
     alter: true,
   })
   .then((res) => {
     console.log("Base de datos conectada correctamente");
     app.listen(envs.PORT, () => {
-      console.log(`Server funcionando en http://localhost:${envs.PORT}`);
+      console.log(`Server funcionando por el puerto :${envs.PORT}`);
     });
 
     seed();
