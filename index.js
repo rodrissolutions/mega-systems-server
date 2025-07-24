@@ -11,7 +11,7 @@ sequelize
   .then((res) => {
     console.log("Base de datos conectada correctamente");
     app.listen(envs.PORT, () => {
-      console.log(`Server funcionando por el puerto :${envs.PORT}`);
+      console.log(`Funcionando por el puerto :${envs.PORT}`);
     });
 
     seed();
