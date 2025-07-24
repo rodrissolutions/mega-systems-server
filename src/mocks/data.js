@@ -608,17 +608,6 @@ export const users = [
     gender: "Femenino",
   },
   {
-    fullName: "Valeria Guamán",
-    dni: "0550407852",
-    phone: "0959797893",
-    email: "vguamancapa@gmail.com",
-    photo: "https://randomuser.me/api/portraits/women/10.jpg",
-    password: envs.GLOBAL_PASSWORD,
-    Role: "Cliente",
-    isVerified: true,
-    gender: "Femenino",
-  },
-  {
     fullName: "Diego Castro",
     dni: "4455667788",
     phone: "0991234567",
